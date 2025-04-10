@@ -12,10 +12,10 @@ spec:
   template:
     metadata:
       labels:
-        {{- include "finops-operator-exporter-chart.labels" . | nindent 8 }}
+        {{- include "sleep-chart.labels" . | nindent 8 }}
     spec:
       containers:
-      - name: {{ include "finops-operator-exporter-chart.fullname" . }}
+      - name: {{ include "sleep-chart.fullname" . }}
         image: ghcr.io/krateoplatformops/alpine-sleep:3.21.2
         resources:
           requests:
