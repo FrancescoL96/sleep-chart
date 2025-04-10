@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: alpine-sleep
+  name: {{ include "sleep-chart.fullname" . }}
   labels:
-    app: alpine-sleep
+    {{- include "sleep-chart.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: alpine-sleep
+      {{- include "sleep-chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: alpine-sleep
+        {{- include "finops-operator-exporter-chart.labels" . | nindent 8 }}
     spec:
       containers:
-      - name: alpine-sleep
+      - name: {{ include "finops-operator-exporter-chart.fullname" . }}
         image: ghcr.io/krateoplatformops/alpine-sleep:3.21.2
         resources:
           requests:
