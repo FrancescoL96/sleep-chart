@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine-sleep
+  labels:
+    app: alpine-sleep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alpine-sleep
+  template:
+    metadata:
+      labels:
+        app: alpine-sleep
+    spec:
+      containers:
+      - name: alpine-sleep
+        image: ghcr.io/krateoplatformops/alpine-sleep:3.21.2
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
